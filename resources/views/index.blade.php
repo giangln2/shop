@@ -1,6 +1,10 @@
-@extends('layout')
+@extends('layout.layout')
 
 @section('title','Trang chủ')
+
+@section('slider')
+    @include('layout.slider')
+@endsection
 
 @section('content')
     <div id="mainBody">

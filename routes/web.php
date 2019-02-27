@@ -18,3 +18,15 @@ Route::get('/', function () {
 Route::get('index', function () {
     return view('index');
 });
+
+Route::get('login', function () {
+    return view('login');
+});
+
+Route::post('login', 'User\LoginController@login');
+
+Route::post('register', 'User\RegisterController@register');
+
+Route::get('logout', 'User\LoginController@logout');
+
+Route::get('check/{q}', 'User\LoginController@check');
