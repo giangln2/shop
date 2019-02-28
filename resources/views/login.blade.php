@@ -3,7 +3,6 @@
 @section('title', 'Đăng nhập/Đăng ký')
 
 @section('content')
-
     <div id="mainBody">
         <div class="container">
             <div class="row">

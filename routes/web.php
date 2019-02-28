@@ -15,9 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('index', function () {
-    return view('index');
-});
+Route::get('index', 'ProductController@index');
+
+Route::resource('product', 'ProductController');
 
 Route::get('login', function () {
     return view('login');
@@ -30,3 +30,7 @@ Route::post('register', 'User\RegisterController@register');
 Route::get('logout', 'User\LoginController@logout');
 
 Route::get('check/{q}', 'User\LoginController@check');
+
+Route::get('category', 'CategoryController@getListCategory');
+
+Route::get('category/{id}', 'CategoryController@getListProductByCategory');

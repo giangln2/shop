@@ -33,7 +33,13 @@
 
 @yield('slider')
 
-@yield('content')
+<div id="mainBody">
+    <div class="container">
+        <div class="row">
+            @yield('content')
+        </div>
+    </div>
+</div>
 
 @include('layout.footer')
 

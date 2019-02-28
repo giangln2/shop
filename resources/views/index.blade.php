@@ -7,103 +7,94 @@
 @endsection
 
 @section('content')
-    <div id="mainBody">
-        <div class="container">
-            <div class="row">
-                <!-- Sidebar ================================================== -->
-                <div id="sidebar" class="span3">
-                    <div class="well well-small"><a id="myCart" href="product_summary.html"><img
-                                src="themes/images/ico-cart.png" alt="cart">3 Items in your cart <span
-                                class="badge badge-warning pull-right">$155.00</span></a></div>
-                    <ul id="sideManu" class="nav nav-tabs nav-stacked">
-                        <li class="subMenu open"><a> ELECTRONICS [230]</a>
-                            <ul>
-                                <li><a class="active" href="products.html"><i class="icon-chevron-right"></i>Cameras
-                                        (100) </a></li>
-                                <li><a href="products.html"><i class="icon-chevron-right"></i>Computers, Tablets &
-                                        laptop (30)</a></li>
-                                <li><a href="products.html"><i class="icon-chevron-right"></i>Mobile Phone (80)</a></li>
-                                <li><a href="products.html"><i class="icon-chevron-right"></i>Sound & Vision (15)</a>
+
+    @include('layout.sidebar')
+
+    <div class="span9">
+        <div class="well well-small">
+            <h4>Featured Products
+                <small class="pull-right">200+ featured products</small>
+            </h4>
+            <div class="row-fluid">
+                <div id="featured" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <ul class="thumbnails">
+                                <li class="span3">
+                                    <div class="thumbnail">
+                                        <i class="tag"></i>
+                                        <a href="product_details.html"><img
+                                                src="themes/images/products/8.jpg" alt=""></a>
+                                        <div class="caption">
+                                            <h5>Product name</h5>
+                                            <h4><a class="btn" href="product_details.html">VIEW</a> <span
+                                                    class="pull-right">$222.00</span></h4>
+                                        </div>
+                                    </div>
                                 </li>
                             </ul>
-                        </li>
-                        <li class="subMenu"><a> CLOTHES [840] </a>
-                            <ul style="display:none">
-                                <li><a href="products.html"><i class="icon-chevron-right"></i>Women's Clothing (45)</a>
+                        </div>
+                        <div class="item">
+                            <ul class="thumbnails">
+                                <li class="span3">
+                                    <div class="thumbnail">
+                                        <a href="product_details.html"><img
+                                                src="themes/images/products/9.jpg" alt=""></a>
+                                        <div class="caption">
+                                            <h5>Product name</h5>
+                                            <h4><a class="btn" href="product_details.html">VIEW</a> <span
+                                                    class="pull-right">$222.00</span></h4>
+                                        </div>
+                                    </div>
                                 </li>
                             </ul>
-                        </li>
-                        <li><a href="products.html">BOOKS & ENTERTAINMENTS [14]</a></li>
-                    </ul>
-                </div>
-                <!-- Sidebar end=============================================== -->
-                <div class="span9">
-                    <div class="well well-small">
-                        <h4>Featured Products
-                            <small class="pull-right">200+ featured products</small>
-                        </h4>
-                        <div class="row-fluid">
-                            <div id="featured" class="carousel slide">
-                                <div class="carousel-inner">
-                                    <div class="item active">
-                                        <ul class="thumbnails">
-                                            <li class="span3">
-                                                <div class="thumbnail">
-                                                    <i class="tag"></i>
-                                                    <a href="product_details.html"><img
-                                                            src="themes/images/products/8.jpg" alt=""></a>
-                                                    <div class="caption">
-                                                        <h5>Product name</h5>
-                                                        <h4><a class="btn" href="product_details.html">VIEW</a> <span
-                                                                class="pull-right">$222.00</span></h4>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="item">
-                                        <ul class="thumbnails">
-                                            <li class="span3">
-                                                <div class="thumbnail">
-                                                    <a href="product_details.html"><img
-                                                            src="themes/images/products/9.jpg" alt=""></a>
-                                                    <div class="caption">
-                                                        <h5>Product name</h5>
-                                                        <h4><a class="btn" href="product_details.html">VIEW</a> <span
-                                                                class="pull-right">$222.00</span></h4>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <a class="left carousel-control" href="#featured" data-slide="prev">‹</a>
-                                <a class="right carousel-control" href="#featured" data-slide="next">›</a>
-                            </div>
                         </div>
                     </div>
-                    <h4>Latest Products </h4>
-                    <ul class="thumbnails">
-                        <li class="span3">
-                            <div class="thumbnail">
-                                <a href="product_details.html"><img src="themes/images/products/6.jpg" alt=""/></a>
-                                <div class="caption">
-                                    <h5>Product name</h5>
-                                    <p>
-                                        Lorem Ipsum is simply dummy text.
-                                    </p>
-
-                                    <h4 style="text-align:center"><a class="btn" href="product_details.html"> <i
-                                                class="icon-zoom-in"></i></a> <a class="btn" href="#">Add to <i
-                                                class="icon-shopping-cart"></i></a> <a class="btn btn-primary" href="#">$222.00</a>
-                                    </h4>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-
+                    <a class="left carousel-control" href="#featured" data-slide="prev">‹</a>
+                    <a class="right carousel-control" href="#featured" data-slide="next">›</a>
                 </div>
             </div>
         </div>
+        <h4>Sản phẩm mới </h4>
+        <ul class="thumbnails">
+            @foreach($listProduct as $product)
+                <li class="span3">
+                    <div class="thumbnail">
+                        <a href="{{ URL::to('product/' . $product->id) }}"><img src="{{ $product->image }}"
+                                                                                alt="{{ $product->name }}"
+                                                                                height="160"
+                                                                                width="160"/></a>
+                        <div class="caption">
+                            <h5><a href="{{ URL::to('product/' . $product->id) }}">{{ $product->name }}</a></h5>
+                            <p>
+                                @for($counter = 0; $counter < count($product->category); $counter++)
+                                    @if($counter == count($product->category) - 1)
+                                        {{ $product->category[$counter]->name }}
+                                    @else
+                                        {{ $product->category[$counter]->name }},
+                                    @endif
+                                @endfor
+                            </p>
+
+                            <h4 style="text-align:center"><a class="btn" href="#">Thêm vào <i
+                                        class="icon-shopping-cart"></i></a> {{ $product->price }}
+                                VNĐ
+                            </h4>
+                        </div>
+                    </div>
+                </li>
+            @endforeach
+        </ul>
     </div>
+@endsection
+
+@section('script')
+    <script>
+        $(document).ready(function () {
+            $.get('/shop/public/category', function (data) {
+                $('#sideMenu').html(data.result);
+                $('#optTxt').html(data.option);
+            });
+        });
+    </script>
 @endsection
