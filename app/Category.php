@@ -13,3 +13,4 @@ class Category extends Model
         return $this->hasOne('App\Product');
     }
 }
+
