@@ -4,12 +4,30 @@ $(document).ready(function () {
         $('#optTxt').html(data.option);
     });
 
-    $('#inputEmail0').change(function () {
-        if ($(this).val() !== "") {
-            $.get('check/' + $(this).val(), function (data) {
-                $('#errorEmail').html(data.result);
+    $('#inputEmail0').keyup(function () {
+        var checkEmail = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        var token = $('input[name="_token"]').val();
+
+        if ($(this).val() !== "" && checkEmail.test($(this).val())) {
+            $.ajax({
+                type: 'POST',
+                url: 'check',
+                data: {
+                    mail: $(this).val(),
+                    _token: token,
+                },
+                success: function (data) {
+                    if (!data.result) {
+                        $('#submitRegister').prop('disabled', true);
+                        $('#errorEmail').html("Email đã được sử dụng!!");
+                    } else {
+                        $('#submitRegister').prop('disabled', false);
+                        $('#errorEmail').html("");
+                    }
+                }
             });
         } else {
+            $('#submitRegister').prop('disabled', false);
             $('#errorEmail').html('');
         }
     });
