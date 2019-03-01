@@ -21,8 +21,8 @@ class CreateTableProductOrderTable extends Migration
             $table->integer('unit_price');
             $table->timestamp('added_at');
 
-            $table->foreign('order_id')->references('id')->on('order');
-            $table->foreign('product_id')->references('id')->on('product');
+            $table->foreign('order_id')->references('id')->on('order')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('product')->onDelete('cascade');
         });
     }
 

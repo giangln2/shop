@@ -3,8 +3,8 @@
         <div class="carousel-inner">
             <div class="item active">
                 <div class="container">
-                    <a href="register.html"><img style="width:100%" src="themes/images/carousel/2.png"
-                                                 alt="special offers"/></a>
+                    <a href="register.html">
+                        <img style="width:100%" src="themes/images/carousel/2.png" alt="special offers"/></a>
                     <div class="carousel-caption">
                         <h4>Second Thumbnail label</h4>
                         <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta

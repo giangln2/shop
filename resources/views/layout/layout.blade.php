@@ -26,6 +26,15 @@
     <link rel="apple-touch-icon-precomposed"
           href="{{ asset('themes/images/ico/apple-touch-icon-57-precomposed.png') }}">
     <style type="text/css" id="enject"></style>
+
+    <style>
+        #sliderTxt {
+            width: 12em; /* the element needs a fixed width (in px, em, %, etc) */
+            overflow: hidden; /* make sure it hides the content that overflows */
+            white-space: nowrap; /* don't break the line */
+            text-overflow: ellipsis; /* give the beautiful '...' effect */
+        }
+    </style>
 </head>
 <body>
 
@@ -33,7 +42,13 @@
 
 @yield('slider')
 
-@yield('content')
+<div id="mainBody">
+    <div class="container">
+        <div class="row">
+            @yield('content')
+        </div>
+    </div>
+</div>
 
 @include('layout.footer')
 
@@ -42,6 +57,7 @@
 <script src="{{ asset('themes/js/google-code-prettify/prettify.js') }}"></script>
 <script src="{{ asset('themes/js/bootshop.js') }}"></script>
 <script src="{{ asset('themes/js/jquery.lightbox-0.5.js') }}"></script>
+<script src="{{ asset('themes/js/custom.js') }}"></script>
 @yield('script')
 
 </body>
