@@ -12,89 +12,75 @@
 
     <div class="span9">
         <div class="well well-small">
-            <h4>Featured Products
-                <small class="pull-right">200+ featured products</small>
+            <h4>Sách nổi bật
+                <small class="pull-right">{{ count($listProduct) }} sản phẩm</small>
             </h4>
             <div class="row-fluid">
                 <div id="featured" class="carousel slide">
                     <div class="carousel-inner">
-                        <div class="item active">
-                            <ul class="thumbnails">
-                                <li class="span3">
-                                    <div class="thumbnail">
-                                        <i class="tag"></i>
-                                        <a href="product_details.html"><img
-                                                src="themes/images/products/8.jpg" alt=""></a>
-                                        <div class="caption">
-                                            <h5>Product name</h5>
-                                            <h4><a class="btn" href="product_details.html">VIEW</a> <span
-                                                    class="pull-right">$222.00</span></h4>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="item">
-                            <ul class="thumbnails">
-                                <li class="span3">
-                                    <div class="thumbnail">
-                                        <a href="product_details.html"><img
-                                                src="themes/images/products/9.jpg" alt=""></a>
-                                        <div class="caption">
-                                            <h5>Product name</h5>
-                                            <h4><a class="btn" href="product_details.html">VIEW</a> <span
-                                                    class="pull-right">$222.00</span></h4>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                        @for($count = 0; $count < count($listProduct); $count++)
+                            @if($count == 0)
+                                <div class="item active">
+                                    <ul class="thumbnails">
+                            @elseif($count % 4 == 0)
+                                <div class="item">
+                                    <ul class="thumbnails">
+                            @endif
+                                        <li class="span3">
+                                            <div class="thumbnail">
+                                                <a href="{{ URL::to('product/'.$listProduct[$count]->id) }}" title="{{ $listProduct[$count]->name }}">
+                                                    <img src="{{ $listProduct[$count]->image }}" alt="{{ $listProduct[$count]->name }}">
+                                                </a>
+                                                <div class="caption">
+                                                    <h5 id="sliderTxt">
+                                                        <a href="{{ URL::to('product/' . $listProduct[$count]->id) }}">{{ $listProduct[$count]->name }}</a>
+                                                    </h5>
+                                                    <h4>
+                                                        <a class="btn" href="{{ URL::to('product/'.$listProduct[$count]->id) }}">Xem</a>
+                                                        <span class="pull-right">{{ $listProduct[$count]->price }} VNĐ</span>
+                                                    </h4>
+                                                </div>
+                                            </div>
+                                        </li>
+                            @if(($count + 1) % 4 == 0)
+                                    </ul>
+                                </div>
+                            @endif
+                        @endfor
+                        @if(count($listProduct) < 4)
+                                </ul>
+                            </div>
+                        @endif
                     </div>
-                    <a class="left carousel-control" href="#featured" data-slide="prev">‹</a>
-                    <a class="right carousel-control" href="#featured" data-slide="next">›</a>
                 </div>
+                <a class="left carousel-control" href="#featured" data-slide="prev">‹</a>
+                <a class="right carousel-control" href="#featured" data-slide="next">›</a>
             </div>
         </div>
-        <h4>Sản phẩm mới </h4>
-        <ul class="thumbnails">
-            @foreach($listProduct as $product)
-                <li class="span3">
-                    <div class="thumbnail">
-                        <a href="{{ URL::to('product/' . $product->id) }}"><img src="{{ $product->image }}"
-                                                                                alt="{{ $product->name }}"
-                                                                                height="160"
-                                                                                width="160"/></a>
-                        <div class="caption">
-                            <h5><a href="{{ URL::to('product/' . $product->id) }}">{{ $product->name }}</a></h5>
-                            <p>
-                                @for($counter = 0; $counter < count($product->category); $counter++)
-                                    @if($counter == count($product->category) - 1)
-                                        {{ $product->category[$counter]->name }}
-                                    @else
-                                        {{ $product->category[$counter]->name }},
-                                    @endif
-                                @endfor
-                            </p>
-
-                            <h4 style="text-align:center"><a class="btn" href="#">Thêm vào <i
-                                        class="icon-shopping-cart"></i></a> {{ $product->price }}
-                                VNĐ
-                            </h4>
-                        </div>
-                    </div>
-                </li>
-            @endforeach
-        </ul>
     </div>
-@endsection
+    <h4>Sách mới </h4>
+    <ul class="thumbnails">
+        @foreach($listProduct as $product)
+            <li class="span3">
+                <div class="thumbnail">
+                    <a href="{{ URL::to('product/' . $product->id) }}">
+                        <img src="{{ $product->image }}" alt="{{ $product->name }}" height="160" width="160"/>
+                    </a>
+                    <div class="caption">
+                        <h5>
+                            <a href="{{ URL::to('product/' . $product->id) }}" title="{{ $product->name }}">{{ $product->name }}</a>
+                        </h5>
+                        <p>
+                            <a href="{{ URL::to('category/' . $product->category->id) }}">{{ $product->category->name }}</a>
+                        </p>
 
-@section('script')
-    <script>
-        $(document).ready(function () {
-            $.get('/shop/public/category', function (data) {
-                $('#sideMenu').html(data.result);
-                $('#optTxt').html(data.option);
-            });
-        });
-    </script>
+                        <h4 style="text-align:center">
+                            <a class="btn" href="#">Thêm vào <i class="icon-shopping-cart"></i></a>
+                            {{ $product->price }} VNĐ
+                        </h4>
+                    </div>
+                </div>
+            </li>
+        @endforeach
+    </ul>
 @endsection

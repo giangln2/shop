@@ -32,16 +32,13 @@
                                     <div class="control-group">
                                         <label class="control-label" for="inputEmail1">E-mail</label>
                                         <div class="controls">
-                                            <input class="span4" type="text" id="inputEmail1" name="inputEmail"
-                                                   placeholder="E-mail">
+                                            <input class="span4" type="text" id="inputEmail1" name="inputEmail" placeholder="E-mail">
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <label class="control-label" for="inputPassword1">Password</label>
                                         <div class="controls">
-                                            <input type="password" class="span4" id="inputPassword1"
-                                                   name="inputPassword"
-                                                   placeholder="Password">
+                                            <input type="password" class="span4" id="inputPassword1" name="inputPassword" placeholder="Password">
                                         </div>
                                     </div>
                                     <div class="control-group">
@@ -65,39 +62,32 @@
                                     <div class="control-group">
                                         <label class="control-label" for="name">Tên người dùng</label>
                                         <div class="controls">
-                                            <input class="span4" type="text" id="inputName" name="inputName0"
-                                                   placeholder="Họ và tên">
+                                            <input class="span4" type="text" id="inputName" name="inputName0" placeholder="Họ và tên">
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <label class="control-label" for="inputEmail0">E-mail</label>
                                         <div class="controls">
-                                            <input class="span4" type="text" id="inputEmail0" name="inputEmail0"
-                                                   placeholder="E-mail"> <label id="errorEmail"
-                                                                                style="color: red"></label>
+                                            <input class="span4" type="text" id="inputEmail0" name="inputEmail0" placeholder="E-mail">
+                                            <label id="errorEmail" style="color: red"></label>
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <label class="control-label" for="inputPassword0">Password</label>
                                         <div class="controls">
-                                            <input class="span4" type="password" id="inputPassword0"
-                                                   name="inputPassword0"
-                                                   placeholder="Password">
+                                            <input class="span4" type="password" id="inputPassword0" name="inputPassword0" placeholder="Password">
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <label class="control-label" for="inputPassword0">Địa chỉ</label>
                                         <div class="controls">
-                                            <input class="span4" type="text" id="inputAddress0" name="inputAddress0"
-                                                   placeholder="Địa chỉ">
+                                            <input class="span4" type="text" id="inputAddress0" name="inputAddress0" placeholder="Địa chỉ">
                                         </div>
                                     </div>
                                     <div class="control-group">
                                         <label class="control-label" for="inputPassword0">Số điện thoại</label>
                                         <div class="controls">
-                                            <input class="span4" type="text" id="inputPhoneNumber0"
-                                                   name="inputPhoneNumber0"
-                                                   placeholder="Số điện thoại">
+                                            <input class="span4" type="text" id="inputPhoneNumber0" name="inputPhoneNumber0" placeholder="Số điện thoại">
                                         </div>
                                     </div>
                                     <div class="controls">
@@ -112,41 +102,3 @@
         </div>
     </div>
 @endsection
-
-@section('script')
-    <script>
-        $(document).ready(function () {
-            $('#inputEmail0').change(function () {
-                if ($(this).val() !== "") {
-                    $.get('check/' + $(this).val(), function (data) {
-                        $('#errorEmail').html(data.result);
-                    });
-                } else {
-                    $('#errorEmail').html('');
-                }
-            });
-
-            $('#submitRegister').click(function () {
-                if ($('#inputName').val() !== "" && $('#inputEmail0').val() !== "" && $('#inputPassword0').val() !== "" &&
-                    $('#inputAddress0').val() !== "" && $('#inputPhoneNumber0').val() !== "") {
-                    return true;
-                } else {
-                    $('#errorRegister').html('Vui lòng nhập đầy đủ thông tin!!');
-                    return false;
-                }
-            });
-
-            $('#submitLogin').click(function () {
-                if ($('#inputEmail1').val() !== "" && $('#inputPassword1').val() !== "") {
-                    return true;
-                } else {
-                    $('#errorLogin').html('Vui lòng nhập đầy đủ thông tin!!');
-                    return false;
-                }
-            });
-        });
-
-    </script>
-@endsection
-
-

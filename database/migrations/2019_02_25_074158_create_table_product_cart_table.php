@@ -18,11 +18,10 @@ class CreateTableProductCartTable extends Migration
             $table->integer('cart_id')->unsigned();
             $table->integer('product_id')->unsigned();
             $table->integer('quantity');
-            $table->integer('unit_price');
             $table->timestamp('added_at');
 
-            $table->foreign('cart_id')->references('id')->on('cart');
-            $table->foreign('product_id')->references('id')->on('product');
+            $table->foreign('cart_id')->references('id')->on('cart')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('product')->onDelete('cascade');
         });
     }
 

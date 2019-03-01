@@ -10,7 +10,10 @@
 
     <div class="span9">
         <ul class="breadcrumb">
-            <li><a href="{{ URL::to('index') }}">Trang chủ</a> <span class="divider">/</span></li>
+            <li>
+                <a href="{{ URL::to('index') }}">Trang chủ</a>
+                <span class="divider">/</span>
+            </li>
             <li class="active">{{ $nameCategory }}</li>
         </ul>
         <h3> {{ $nameCategory }}
@@ -21,9 +24,8 @@
             <div class="control-group">
                 <label class="control-label alignL">Sort By </label>
                 <select>
-                    <option>Priduct name A - Z</option>
-                    <option>Priduct name Z - A</option>
-                    <option>Priduct Stoke</option>
+                    <option>Theo tên A - Z</option>
+                    <option>Theo tên Z - A</option>
                     <option>Price Lowest first</option>
                 </select>
             </div>
@@ -54,21 +56,9 @@
             </div>
         </div>
 
-
         <div class="pagination">
             {!! $listProduct->render() !!}
         </div>
         <br class="clr"/>
     </div>
-@endsection
-
-@section('script')
-    <script>
-        $(document).ready(function () {
-            $.get('/shop/public/category', function (data) {
-                $('#sideMenu').html(data.result);
-                $('#optTxt').html(data.option);
-            });
-        });
-    </script>
 @endsection
