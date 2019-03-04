@@ -31,7 +31,7 @@ class CategoryController extends Controller
         return view('category.category')->with([
             'listProduct'  => $listProduct,
             'nameCategory' => $nameCategory,
-            'quantity'     => count($listProduct),
+            'quantity'     => count($listProduct)
         ]);
     }
 }
