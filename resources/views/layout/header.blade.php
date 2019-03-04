@@ -26,9 +26,9 @@
                 <a class="brand" href="{{ URL::to('index') }}">
                     <img src="{{ asset('themes/images/logo.png') }}" alt="Bootsshop"/>
                 </a>
-                <form class="form-inline navbar-search" method="post" action="products.html">
-                    <input id="srchFld" class="srchTxt" type="text"/>
-                    <select class="srchTxt" id="optTxt">
+                <form class="form-inline navbar-search" method="get" action="{{ URL::to('search') }}" id="searchForm">
+                    <input id="srchFld" name="srchTxt" class="srchTxt" type="text"/>
+                    <select class="srchTxt" id="optTxt" name="optTxt">
                     </select>
                     <button type="submit" id="submitButton" class="btn btn-primary">Tìm</button>
                 </form>
