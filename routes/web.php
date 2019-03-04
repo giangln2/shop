@@ -29,7 +29,7 @@ Route::post('register', 'User\RegisterController@register');
 
 Route::get('logout', 'User\LoginController@logout');
 
-Route::get('check/{q}', 'User\LoginController@check');
+Route::post('check', 'User\RegisterController@check');
 
 Route::get('category', 'CategoryController@getListCategory');
 

@@ -25,19 +25,6 @@ class LoginController extends Controller
         }
     }
 
-    public function check($q = "")
-    {
-        $result = "";
-        if (trim($q) !== "") {
-            $list = User::where('email', 'like', '%' . $q . '%')->get();
-
-            if (count($list) != 0){
-                $result = "Email đã được sử dụng";
-            }
-        }
-        return response()->json(['result' => $result]);
-    }
-
     public function logout(Request $request)
     {
         Auth::logout();

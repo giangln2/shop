@@ -32,4 +32,18 @@ class RegisterController extends Controller
             return redirect('login')->with('fail', 'Đăng ký thất bại, vui lòng nhập lại thông tin!!');
         }
     }
+
+
+    public function check(Request $request)
+    {
+        $result = true;
+        if (trim($request->get('mail')) !== "") {
+            $list = User::where('email', 'like', '%' . $request->get('mail') . '%')->get();
+
+            if (count($list) != 0){
+                $result = false;
+            }
+        }
+        return response()->json(['result' => $result]);
+    }
 }
