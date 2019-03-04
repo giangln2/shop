@@ -34,3 +34,5 @@ Route::get('check/{q}', 'User\LoginController@check');
 Route::get('category', 'CategoryController@getListCategory');
 
 Route::get('category/{id}', 'CategoryController@getListProductByCategory');
+
+Route::get('search', 'Product\SearchProductController@search');

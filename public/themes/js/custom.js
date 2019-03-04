@@ -32,4 +32,12 @@ $(document).ready(function () {
             return false;
         }
     });
+
+    $('#searchForm').submit(function () {
+        if ($('#srchFld').val()) {
+            return true;
+        } else {
+            return false;
+        }
+    })
 });

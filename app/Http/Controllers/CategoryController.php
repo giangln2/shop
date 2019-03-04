@@ -13,11 +13,11 @@ class CategoryController extends Controller
     {
         $listCategory = Category::all();
         $sidebar = "";
-        $option = "<option>Tất cả</option>";
+        $option = "<option value='0'>Tất cả</option>";
 
         foreach ($listCategory as $category) {
             $sidebar .= '<li><a href="' . URL::to('category/' . $category->id) . '">' . $category->name . '</a></li>';
-            $option .= '<option>' . $category->name . '</option>';
+            $option .= '<option value="' . $category->id . '">' . $category->name . '</option>';
         }
         return response()->json(['sidebar' => $sidebar, 'option' => $option]);
     }
@@ -28,7 +28,7 @@ class CategoryController extends Controller
         $listProduct = $listProduct->product()->paginate(3);
         $nameCategory = Category::find($id)->name;
         
-        return view('product.product')->with([
+        return view('category.category')->with([
             'listProduct'  => $listProduct,
             'nameCategory' => $nameCategory,
             'quantity'     => count($listProduct),
